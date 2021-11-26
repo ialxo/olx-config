@@ -1,0 +1,37 @@
+management:  endpoints:    web:      base-path: /advertise
+      exposure:        include: "*"
+  health:    circuitbreakers:      enabled: true
+  endpoint:    health:      show-details: always 
+
+spring:  datasource:    url: jdbc:mysql://localhost:3306/olx-advertises
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:    generate-ddl: true
+    show-sql: true
+    hibernate:      ddl-auto: update
+    properties:      dialect: org.hibernate.dialect.MYSQL8Dialect
+  zipkin:    base-url: http://localhost:9411
+    
+resilience4j:  circuitbreaker:    instances:      CATEGORY-CIRCUIT-BREAKER:
+        register-health-indicator: true
+        automatic-transition-from-open-to-half-open-enabled: true
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        wait-duration-in-open-state: 10s
+      STATUS-CIRCUIT-BREAKER:
+        register-health-indicator: true
+        automatic-transition-from-open-to-half-open-enabled: true
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        wait-duration-in-open-state: 10s
+      VALIDATE-TOKEN-CIRCUIT-BREAKER:
+        register-health-indicator: true
+        automatic-transition-from-open-to-half-open-enabled: true
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        wait-duration-in-open-state: 10s
+        
