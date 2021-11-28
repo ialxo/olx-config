@@ -33,5 +33,5 @@ resilience4j:  circuitbreaker:    instances:      CATEGORY-CIRCUIT-BREAKER:
         failure-rate-threshold: 50
         minimum-number-of-calls: 5
         permitted-number-of-calls-in-half-open-state: 3
-        wait-duration-in-open-state: 10s
+        wait-duration-in-open-state: 10s      GET-STATUS-CIRCUIT-BREAKER:        register-health-indicator: true        automatic-transition-from-open-to-half-open-enabled: true        failure-rate-threshold: 50        minimum-number-of-calls: 5        permitted-number-of-calls-in-half-open-state: 3        wait-duration-in-open-state: 10s      GET-CATEGORY-CIRCUIT-BREAKER:        register-health-indicator: true        automatic-transition-from-open-to-half-open-enabled: true        failure-rate-threshold: 50        minimum-number-of-calls: 5        permitted-number-of-calls-in-half-open-state: 3        wait-duration-in-open-state: 10s
         
